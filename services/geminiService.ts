@@ -15,6 +15,7 @@ const withRetry = async <T>(fn: () => Promise<T>, retries = 3, delay = 1000): Pr
 };
 
 // Initialize Gemini API client - always using process.env.API_KEY as per guidelines
+// Fix: Use named parameter for GoogleGenAI initialization
 const getAiClient = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
 export const generateStoryScript = async (
@@ -106,7 +107,8 @@ export const generatePanelImage = async (prompt: string, style: string = 'classi
 };
 
 export const generateComicVideo = async (story: ComicStory, style: string): Promise<string> => {
-  const ai = getAiClient();
+  // Fix: Create instance right before call as per Veo requirements to ensure latest API key
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   const referenceImages = story.panels
     .filter(p => p.imageUrl)
     .slice(0, 3)
@@ -139,6 +141,7 @@ export const generateComicVideo = async (story: ComicStory, style: string): Prom
   const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
   if (!downloadLink) throw new Error("Video generation failed");
 
+  // Fix: Access with current process.env.API_KEY
   const response = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);

@@ -14,18 +14,18 @@ export const Button: React.FC<ButtonProps> = ({
   ...props 
 }) => {
   const variants = {
-    primary: 'bg-zinc-900 hover:bg-zinc-800 border-zinc-900 text-white',
-    secondary: 'bg-white hover:bg-zinc-100 border-zinc-900 text-zinc-900',
-    danger: 'bg-red-800 hover:bg-red-900 border-zinc-900 text-white',
-    accent: 'bg-indigo-700 hover:bg-indigo-800 border-zinc-900 text-white',
+    primary: 'bg-zinc-900 hover:bg-zinc-800 border-zinc-900 text-white shadow-xl',
+    secondary: 'bg-white hover:bg-zinc-50 border-zinc-200 text-zinc-900 shadow-sm',
+    danger: 'bg-red-500 hover:bg-red-600 border-red-500 text-white shadow-lg',
+    accent: 'bg-indigo-600 hover:bg-indigo-700 border-indigo-600 text-white shadow-2xl',
   };
 
   return (
     <button
       className={`
-        px-6 py-2 border-b-2 border-r-2 active:border-b-0 active:border-r-0 
-        active:translate-y-0.5 active:translate-x-0.5 font-bold uppercase tracking-widest
-        transition-all duration-75 flex items-center justify-center gap-2 text-xs
+        px-8 py-4 font-bold uppercase tracking-widest
+        transition-all duration-300 flex items-center justify-center gap-3 text-[10px]
+        hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]
         ${variants[variant]}
         ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}
         ${className}
