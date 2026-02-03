@@ -1,0 +1,7 @@
+{
+  "name": "PanelPulse: AI Comic Creator",
+  "description": "Transform your ideas or images into vibrant comic book adventures. Uses Gemini's multi-modal capabilities to script stories and generate consistent scene visuals in a professional comic layout.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
